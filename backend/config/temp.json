@@ -1,0 +1,225 @@
+{
+  "region": "EU",
+  "user": {
+    "firstname": "Abdel-Sawal",
+    "ovhCompany": "ovh",
+    "birthDay": "",
+    "state": "complete",
+    "zip": "1431",
+    "currency": {
+      "code": "EUR",
+      "symbol": "€"
+    },
+    "area": "",
+    "companyNationalIdentificationNumber": null,
+    "fax": "",
+    "legalform": "individual",
+    "address": "Maison Boni, Quartier Sèmè, Abomey-Calavi",
+    "birthCity": "",
+    "italianSDI": "0000000",
+    "customerCode": "4940-6188-16",
+    "phone": "+229.62526964",
+    "country": "BJ",
+    "name": "Tamou Gounou",
+    "sex": null,
+    "spareEmail": null,
+    "nichandle": "ta618816-ovh",
+    "email": "runexbrandsltd@gmail.com",
+    "city": "Cotonou",
+    "ovhSubsidiary": "FR",
+    "nationalIdentificationNumber": null,
+    "phoneCountry": "BJ",
+    "organisation": "",
+    "vat": "",
+    "corporationType": "",
+    "language": "fr_FR",
+    "supportLevel": {
+      "level": "standard"
+    },
+    "certificates": [
+      "email-validated",
+      "consent-marketing-email"
+    ],
+    "isTrusted": false,
+    "auth": {
+      "roles": [
+        "ADMIN"
+      ],
+      "method": "account",
+      "user": null,
+      "description": null
+    },
+    "enterprise": false
+  },
+  "applicationURLs": {
+    "cloud": "https://www.ovh.com/manager/cloud/repsac/",
+    "dedicated": "https://www.ovh.com/manager/dedicated/",
+    "hub": "https://www.ovh.com/manager/",
+    "public-cloud": "https://www.ovh.com/manager/public-cloud/",
+    "telecom": "https://www.ovhtelecom.fr/manager/",
+    "web": "https://www.ovh.com/manager/web/",
+    "billing": "https://www.ovh.com/manager/dedicated/",
+    "user": "https://www.ovh.com/manager/dedicated/",
+    "exchange": "https://www.ovh.com/manager/web/",
+    "sharepoint": "https://www.ovh.com/manager/web/",
+    "office": "https://www.ovh.com/manager/web/",
+    "telephony": "https://www.ovhtelecom.fr/manager/",
+    "pack-xdsl": "https://www.ovhtelecom.fr/manager/",
+    "overthebox": "https://www.ovhtelecom.fr/manager/",
+    "freefax": "https://www.ovhtelecom.fr/manager/",
+    "sms": "https://www.ovhtelecom.fr/manager/"
+  },
+  "universe": "server",
+  "message": null,
+  "applications": {
+    "cloud": {
+      "universe": "server",
+      "url": "https://www.ovh.com/manager/cloud/repsac/",
+      "container": {
+        "isDefault": false,
+        "enabled": false
+      },
+      "publicURL": "https://www.ovh.com/manager/cloud/repsac/"
+    },
+    "dedicated": {
+      "universe": "server",
+      "url": "https://www.ovh.com/manager/dedicated/",
+      "container": {
+        "isDefault": false,
+        "enabled": false,
+        "path": "dedicated"
+      },
+      "publicURL": "https://www.ovh.com/manager/dedicated/"
+    },
+    "hub": {
+      "universe": "hub",
+      "url": "https://www.ovh.com/manager/",
+      "container": {
+        "isDefault": true,
+        "enabled": false,
+        "path": "hub"
+      },
+      "publicURL": "https://www.ovh.com/manager/"
+    },
+    "public-cloud": {
+      "universe": "public-cloud",
+      "url": "https://www.ovh.com/manager/public-cloud/",
+      "container": {
+        "isDefault": false,
+        "enabled": false,
+        "path": "public-cloud"
+      },
+      "publicURL": "https://www.ovh.com/manager/public-cloud/"
+    },
+    "telecom": {
+      "universe": "telecom",
+      "url": "https://www.ovhtelecom.fr/manager/",
+      "container": {
+        "isDefault": false,
+        "enabled": false,
+        "path": "telecom"
+      },
+      "publicURL": "https://www.ovhtelecom.fr/manager/"
+    },
+    "web": {
+      "universe": "web",
+      "url": "https://www.ovh.com/manager/web/",
+      "container": {
+        "isDefault": false,
+        "enabled": false,
+        "path": "web"
+      },
+      "publicURL": "https://www.ovh.com/manager/web/"
+    },
+    "billing": {
+      "universe": "server",
+      "url": "https://www.ovh.com/manager/dedicated/",
+      "container": {
+        "isDefault": false,
+        "enabled": false
+      },
+      "publicURL": "https://www.ovh.com/manager/dedicated/"
+    },
+    "user": {
+      "universe": "server",
+      "url": "https://www.ovh.com/manager/dedicated/",
+      "container": {
+        "isDefault": false,
+        "enabled": false
+      },
+      "publicURL": "https://www.ovh.com/manager/dedicated/"
+    },
+    "exchange": {
+      "universe": "web",
+      "url": "https://www.ovh.com/manager/web/",
+      "container": {
+        "isDefault": false,
+        "enabled": false
+      },
+      "publicURL": "https://www.ovh.com/manager/web/"
+    },
+    "sharepoint": {
+      "universe": "web",
+      "url": "https://www.ovh.com/manager/web/",
+      "container": {
+        "isDefault": false,
+        "enabled": false
+      },
+      "publicURL": "https://www.ovh.com/manager/web/"
+    },
+    "office": {
+      "universe": "web",
+      "url": "https://www.ovh.com/manager/web/",
+      "container": {
+        "isDefault": false,
+        "enabled": false
+      },
+      "publicURL": "https://www.ovh.com/manager/web/"
+    },
+    "telephony": {
+      "universe": "telecom",
+      "url": "https://www.ovhtelecom.fr/manager/",
+      "container": {
+        "isDefault": false,
+        "enabled": false
+      },
+      "publicURL": "https://www.ovhtelecom.fr/manager/"
+    },
+    "pack-xdsl": {
+      "universe": "telecom",
+      "url": "https://www.ovhtelecom.fr/manager/",
+      "container": {
+        "isDefault": false,
+        "enabled": false
+      },
+      "publicURL": "https://www.ovhtelecom.fr/manager/"
+    },
+    "overthebox": {
+      "universe": "telecom",
+      "url": "https://www.ovhtelecom.fr/manager/",
+      "container": {
+        "isDefault": false,
+        "enabled": false
+      },
+      "publicURL": "https://www.ovhtelecom.fr/manager/"
+    },
+    "freefax": {
+      "universe": "telecom",
+      "url": "https://www.ovhtelecom.fr/manager/",
+      "container": {
+        "isDefault": false,
+        "enabled": false
+      },
+      "publicURL": "https://www.ovhtelecom.fr/manager/"
+    },
+    "sms": {
+      "universe": "telecom",
+      "url": "https://www.ovhtelecom.fr/manager/",
+      "container": {
+        "isDefault": false,
+        "enabled": false
+      },
+      "publicURL": "https://www.ovhtelecom.fr/manager/"
+    }
+  }
+}

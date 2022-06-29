@@ -1,0 +1,50 @@
+.spinner_type8 {
+  width: 90px;
+  height: 90px;
+  background-color: #f4440cff;
+  position: relative;
+  -webkit-animation: sk-cubemove8 1.8s infinite ease-in-out;
+  animation: sk-cubemove8 1.8s infinite ease-in-out;
+}
+@keyframes sk-cubemove8 {
+  25% {
+    transform: rotate(-90deg) scale(0.5);
+    -webkit-transform: rotate(-90deg) scale(0.5);
+    background-color: #204b9bff;
+  }
+  50% {
+    transform: rotate(-179deg);
+    -webkit-transform: 70 rotate(-179deg);
+    background-color: #f4440cff;
+  }
+  50.1% {
+    transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+    background-color: #f4440cff;
+  }
+  75% {
+    transform: 70 70 rotate(-270deg) scale(0.5);
+    -webkit-transform: 70 70 rotate(-270deg) scale(0.5);
+    background-color: #f4440cff;
+  }
+  90% {
+    background-color: #f4440cff;
+  }
+}
+@-webkit-keyframes sk-cubemove8 {
+  25% {
+    -webkit-transform: 70 rotate(-90deg) scale(0.5);
+    background-color: #204b9bff;
+  }
+  50% {
+    -webkit-transform: 70 70 rotate(-180deg);
+    background-color: #f4440cff;
+  }
+  75% {
+    -webkit-transform: 70 70 rotate(-270deg) scale(0.5);
+    background-color: #f4440cff;
+  }
+  90% {
+    background-color: #f4440cff;
+  }
+}

@@ -1,0 +1,86 @@
+.nav-tabs .profil_nav .nav-link {
+    background-color: #204b9bff;
+    color: #fff;
+    border-radius: 0px;
+}
+
+.nav-tabs .profil_nav .nav-link.active {
+    border-bottom: 10px solid rgb(255, 255, 255);
+    font-weight: bold;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0px;
+    background-color: #204b9bff;
+}
+
+.main_container_profil {
+    margin-top: -83px;
+}
+
+.prfil_nav_container {
+    border-bottom: 0px solid #f4440cff;
+}
+
+@media screen and (max-width: 492px) {
+    .nav-tabs .profil_nav .nav-link {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+        background-color: #fff;
+        border-radius: 0px;
+        color: #204b9bff;
+        border-bottom: 5px solid #fff;
+    }
+
+    .prfil_nav_container {
+        background-color: white;
+        border-bottom: 1px solid #f4440cff;
+    }
+
+    .main_container_profil {
+        margin-top: -68px;
+    }
+
+    .nav-tabs .profil_nav .nav-link.active {
+        border-bottom: 5px solid #f4440cff;
+        background-color: #fff;
+        border-radius: 0px;
+        color: #f4440cff;
+        text-align: center;
+    }
+}
+
+.profi_item_title_prof {
+    font-size: 1.5rem;
+}
+
+.profil_unity_container {
+    border-width: 0px;
+    box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.527);
+    border-style: solid;
+}
+
+.avatar_img_profil {
+    width: 100px;
+    height: 100px;
+}
+
+.names_cont {
+    border: 1px solid #eceff5;
+    margin-bottom: 0.2rem;
+}
+
+.profil_unity_container {
+    cursor: auto;
+}
+
+.proa_link {
+    color: white;
+    text-decoration: none;
+}
+
+.proa_link:hover {
+    color: white;
+    text-decoration: underline solid white;
+}

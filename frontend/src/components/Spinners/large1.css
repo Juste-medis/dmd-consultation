@@ -1,0 +1,26 @@
+.spinner_loading {
+  -webkit-animation: blink 10s infinite both;
+  animation: blink 10s infinite both;
+}
+@-webkit-keyframes blink {
+  0%,
+  50%,
+  90% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+@keyframes blink {
+  0%,
+  50%,
+  90% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,36 @@
+.value_prop {
+  font-size: 1.07rem !important;
+  font-weight: 800 !important;
+}
+
+.image_user {
+  height: 10rem;
+  width: 10rem;
+}
+
+.image_user_dem {
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
+  box-shadow: 0px 3px 12px 2px rgb(0 0 0 / 32%);
+}
+
+@media screen and (max-width: 495px) {
+  .image_user {
+  }
+}
+.short_des_cont {
+  color: #393f4a;
+}
+.motivation_title {
+  padding: 2px;
+  padding-right: 30px;
+  padding-left: 10px;
+  position: absolute;
+  top: -15px;
+  background-color: white;
+  z-index: 2;
+}
+.motivation {
+  color: #393f4a;
+}

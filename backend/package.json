@@ -1,0 +1,44 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon",
+    "serve": "forever start --append -o out.log -e err.log server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "cookie-session": "^1.4.0",
+    "cors": "^2.8.5",
+    "csurf": "^1.11.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "forever-monitor": "^3.0.3",
+    "formidable": "^1.2.2",
+    "helmet": "^4.6.0",
+    "jimp": "^0.16.1",
+    "joi": "^17.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "jw-paginate": "^1.0.4",
+    "kkiapay-nodejs-sdk": "github:kkiapay/nodejs-sdk",
+    "mongoose": "^5.12.4",
+    "mongoose-unique-validator": "^2.0.3",
+    "node-phpass": "^1.0.5",
+    "nodemailer": "^6.6.2",
+    "sanitize-html": "^2.4.0",
+    "serialize-javascript": "^5.0.1",
+    "winston": "^3.3.3",
+    "winston-mongodb": "^5.0.7",
+    "xlsx": "^0.18.5",
+    "yup": "^0.32.9"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

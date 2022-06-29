@@ -1,0 +1,21 @@
+.landing_inner {
+  min-height: 100vh;
+}
+
+@media screen and (max-width: 495px) {
+  .landing_container {
+    margin-top: 3rem;
+  }
+}
+
+@media screen and (min-width: 495px) and (max-width: 975px) {
+  .landing_container {
+    margin-top: 3.2rem;
+  }
+}
+
+@media screen and (min-width: 975px) and (max-width: 992px) {
+  .landing_container {
+    margin-top: 3.3rem;
+  }
+}

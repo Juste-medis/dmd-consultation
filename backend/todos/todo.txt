@@ -1,0 +1,19 @@
+
+    "1":"rendre unername unique dans la bd",
+    "2":"thumbnails"
+    "3":"interfaces visuaalisation demand/offre"
+
+    searche inteligence
+    pagination
+    filter offer
+    about page
+    tous le monde n'a pas acces a tous les interfaces
+
+    ******************************calculs**************************************
+se_course_meta
+    total_lessons
+    total_section
+    c_star
+    c_similar
+    c_sttudent
+    c_status

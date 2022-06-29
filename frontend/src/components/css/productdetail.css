@@ -1,0 +1,46 @@
+.covered_img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  z-index: 4;
+  overflow: hidden;
+}
+.blacker_cont {
+  min-height: 30rem;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.603);
+  background-position: center;
+  background-size: contain;
+}
+.row_conainer {
+  background: rgba(0, 0, 0, 0.904);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  z-index: 6;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+@media screen and (max-width: 495px) {
+  .landing_container {
+    margin-top: 3rem;
+  }
+}
+
+@media screen and (min-width: 495px) and (max-width: 975px) {
+  .landing_container {
+    margin-top: 3.2rem;
+  }
+}
+
+@media screen and (min-width: 975px) and (max-width: 992px) {
+  .landing_container {
+    margin-top: 3.3rem;
+  }
+}
