@@ -15,7 +15,19 @@ export async function AGetMyOptions(setdada, query) {
     }
   });
 }
-export async function SAGetMyOptions(setdada, query) {
+export async function AddConsultation(setdada, option) {
+  let url = baseUrl + '/djondoapi/royal/dashboard/caspero/load/' + option;
+  let res = await fetch(url, {
+    method: 'post',
+    body: setdada,
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  });
+  return await res.json();
+}
+export async function GetOptions(setdada, query) {
   let url = baseUrl + '/djondoapi/royal/dashboard/caspero/options/' + setdada;
   return await axios.request({
     baseURL: url,
@@ -29,12 +41,25 @@ export async function SAGetMyOptions(setdada, query) {
   });
 }
 
-export async function GetConsultations(query) {
-  let url = baseUrl + '/djondoapi/royal/dashboard//data/consultations';
+export async function GetConsultations(query, page) {
+  let url = baseUrl + '/djondoapi/royal/dashboard/data/consultations';
   return await axios.request({
     baseURL: url,
     method: 'get',
-    params: { ...(query ? { query } : {}) },
+    params: { ...(query ? { query } : {}), page },
+    responseType: 'json',
+    withCredentials: true,
+    headers: {
+      Accept: 'application/json'
+    }
+  });
+}
+
+export async function GetFileLines() {
+  let url = baseUrl + '/djondoapi/royal/consulations/getlines';
+  return await axios.request({
+    baseURL: url,
+    method: 'get',
     responseType: 'json',
     withCredentials: true,
     headers: {

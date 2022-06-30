@@ -7,6 +7,13 @@ const auth_admin = require("../middleware/auth_admin");
 const auth_superadmin = require("../middleware/auth_super_admin");
 
 router.post("/update/option", corsSameSite, auth, stuffCtrl.UpdateOption);
+router.post(
+  "/caspero/load/:option",
+  corsSameSite,
+  auth,
+  auth_admin,
+  stuffCtrl.populateConsultation
+);
 
 router.get(
   "/data/consultations",
@@ -19,15 +26,14 @@ router.get(
   corsSameSite,
   auth,
   auth_admin,
-  auth_superadmin,
   stuffCtrl.getSuperAdminOption
 );
+
 router.get(
   "/caspero/statistics/:option",
   corsSameSite,
   auth,
   auth_admin,
-  auth_superadmin,
   stuffCtrl.AGetStatistics
 );
 

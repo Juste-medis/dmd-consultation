@@ -49,14 +49,14 @@ const LoginForm = ({ hasLabel, login }) => {
               { path: '/', maxAge: Globals.COOKIE_DURATIONN.TOKEN_AUTHENTICATE }
             );
           }
-          if (login) {
-            setTimeout(() => {
+          toast.success(`Bienvenu ${res.identity}`);
+          setTimeout(() => {
+            if (login) {
               login();
-            }, 2000);
-          } else {
-            toast.success(`Bienvenu ${res.public_name}`);
-            window.location.replace('/user/settings');
-          }
+            } else {
+              window.location.replace('/');
+            }
+          }, 2000);
         }
       })
       .catch(err => {

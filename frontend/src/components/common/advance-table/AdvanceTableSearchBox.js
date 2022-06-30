@@ -7,13 +7,21 @@ import { useAsyncDebounce } from 'react-table';
 const AdvanceTableSearchBox = ({
   globalFilter,
   setGlobalFilter,
-  placeholder = 'Search...'
+  placeholder = 'Rechercher...',
+  handlesortage
 }) => {
   const [value, setValue] = useState(globalFilter);
 
-  const onChange = useAsyncDebounce(value => {
-    setGlobalFilter(value || undefined);
-  }, 200);
+  const onChange = handlesortage
+    ? value => {
+        handlesortage('find', {
+          key: 's',
+          value
+        });
+      }
+    : useAsyncDebounce(value => {
+        setGlobalFilter(value || undefined);
+      }, 200);
 
   return (
     <InputGroup className="position-relative">

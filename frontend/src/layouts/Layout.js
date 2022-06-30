@@ -39,10 +39,16 @@ const Layout = () => {
         <Route path="/authentication/user" component={AuthSimpleLayout} />
         <Route path="/authentication/logout" component={Logout} />
         <PrivateRoute
+          local="___lo_rery_yap_adi"
+          path="/dashboard/admin"
+          component={<MainLayout />}
+        />
+        <PrivateRoute
           local="___lo_rery_yap"
           path="/dashboard"
           component={<MainLayout />}
         />
+
         <Route component={LandingLayout} />
         <Redirect to="/errors/404" />
       </Switch>
@@ -66,6 +72,27 @@ const Layout = () => {
 };
 
 export function PrivateRoute({ component, local, ...rest }) {
+  const isAuthenticated = cookies.get(local);
+
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        isAuthenticated ? (
+          component
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/authentication/user/login',
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
+export function PrivateRouteAdmin({ component, local, ...rest }) {
   const isAuthenticated = cookies.get(local);
 
   return (

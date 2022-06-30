@@ -336,6 +336,7 @@ module.exports = {
     recquired_companyacti: "Vous devez choisir un secteur d'activité",
     recquired_country: "vous devez Selectinner un pays",
     recquired_city: "vous devez saisir une ville",
+    unfound_fields: "Un ou plusieurs champs sont manquants !",
     recquired_phone1: "Vous devez saisir un numéro de télephone",
     recquired_candidate_title: "Dites-en sur votre titre",
     recquired_oftitle: "Donnez un titre à votre nouvelle offre",

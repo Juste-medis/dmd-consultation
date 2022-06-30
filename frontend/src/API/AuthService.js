@@ -77,19 +77,6 @@ const AuthFetcher = {
     });
     return await res.json();
   },
-  UpdateData: async function (setdada, umeta) {
-    let url = baseUrl + '/auth/users/update';
-    url += umeta ? '?umeta=' + umeta : '';
-    let res = await fetch(url, {
-      method: 'post',
-      body: setdada,
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    });
-    return await res.json();
-  },
   ChangePassPassu: async function (user_pass) {
     let res = await fetch(baseUrl + '/auth/users/changepass/recorvery', {
       method: 'post',

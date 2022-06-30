@@ -3,10 +3,8 @@ import { Navbar, Nav } from 'react-bootstrap';
 import classNames from 'classnames';
 import AppContext from 'context/Context';
 import Logo from 'components/common/Logo';
-import SearchBox from './SearchBox';
 import NavbarTopDropDownMenus from './NavbarTopDropDownMenus';
 import { navbarBreakPoint, topNavbarBreakpoint } from 'config';
-import autoCompleteInitialItem from 'data/autocomplete/autocomplete';
 import TopNavRightSideNavItem from './TopNavRightSideNavItem';
 import { useLocation } from 'react-router';
 
@@ -88,11 +86,7 @@ const NavbarTop = () => {
           navbar
           className={`align-items-center d-none d-${topNavbarBreakpoint}-block`}
           as="ul"
-        >
-          <Nav.Item as="li">
-            <SearchBox autoCompleteItem={autoCompleteInitialItem} />
-          </Nav.Item>
-        </Nav>
+        ></Nav>
       )}
 
       <TopNavRightSideNavItem />

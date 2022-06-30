@@ -53,6 +53,12 @@ async function createUser(userParam) {
       if (err) throw err;
     });
 
+  // require("./service.mailing").SendMail({
+  //   to: user_email,
+  //   message: `Un nouvel Utilisateur Enregisté . Identité: ${userdata.identity}  E-mail: ${userdata.user_email}`,
+  //   subject: "Inscription",
+  // });
+
   return newUser;
 }
 async function authenticate(route, res) {
@@ -137,9 +143,7 @@ async function authenticate(route, res) {
       if (await isAdmin(user.ID)) {
         final_user.isadmin = "admin";
       }
-      if (await isSuperAdmin(user.ID)) {
-        final_user.isadmin = "super";
-      }
+
       return final_user;
     }
   }
@@ -258,8 +262,18 @@ async function aupdate(req) {
   }
   if (userParam.user_status) {
     userParam = Numberrise(userParam);
-    assert(await isSuperAdmin(req.params.userId), "not super admin");
     assert([1, 4, 5].includes(userParam.user_status), "bad level");
+
+    if (userParam.user_status === 1) {
+      let userm = await global.dbo
+        .collection("dmd_users")
+        .find({ user_status: 4 })
+        .toArray();
+      assert(
+        userm.length >= 2,
+        "Operation non possible pour le moment ! Assurez-vous la disponibilité d'un administrateur "
+      );
+    }
   }
   if (action === "bulk") {
     ids = ids.split(",").map((e) => Number(e));
@@ -306,72 +320,6 @@ async function _delete(id) {
   await global.dbo.collection("dmd_users").findOneAndDelete({ ID: id });
 }
 
-async function ActonUser(req) {
-  let { ids, globalaction, message, objet, content } = req.body;
-  ids = ids.split(",");
-  ids = globalaction === "newsletter" ? ids : ids.map((e) => Number(e));
-
-  var users = await global.dbo
-    .collection("dmd_users")
-    .find({ ID: { $in: ids } }, { projection: { _id: 0 } })
-    .toArray();
-  if (globalaction === "notification") {
-    sendMessage(req, { notiID: Date.now() }, ids);
-  } else if (globalaction === "newsletter") {
-    sendNewsletter(req, { notiID: Date.now() }, ids);
-  } else
-    for (let ca = 0; ca < users.length; ca++) {
-      let projecta = { ID: users[ca].ID };
-      if (globalaction === "enable" || globalaction === "disable") {
-        global.dbo
-          .collection("dmd_users")
-          .updateOne(
-            projecta,
-            { $set: { visibility: globalaction } },
-            function (err, res) {
-              if (err) throw err;
-            }
-          );
-      } else if (globalaction === "delete") {
-        let rele = await global.dbo
-          .collection("dmd_users")
-          .aggregate([
-            {
-              $lookup: {
-                from: "dmd_users_meta",
-                localField: "ID",
-                foreignField: "ID",
-                as: "meta",
-              },
-            },
-            {
-              $match: projecta,
-            },
-            {
-              $project: {
-                _id: 0,
-                "meta._id": 0,
-              },
-            },
-          ])
-          .toArray();
-        rele = rele[0];
-        require("../helpers/dbUtils").trashCollection(rele, "dmd_users");
-        global.dbo
-          .collection("dmd_users")
-          .deleteOne(projecta, function (err, res) {
-            if (err) throw err;
-          });
-        global.dbo
-          .collection("dmd_users_meta")
-          .deleteOne(projecta, function (err, res) {
-            if (err) throw err;
-          });
-      }
-    }
-  return 1;
-}
-
 module.exports = {
   authenticate,
   getById,
@@ -379,5 +327,4 @@ module.exports = {
   delete: _delete,
   getUserUnity,
   aupdate,
-  ActonUser
 };

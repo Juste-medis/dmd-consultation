@@ -1,6 +1,7 @@
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 const _l = cookies.get('___lo_rery_yap_adi')?.substring(39);
+console.log(_l);
 
 export const dashboardRoutes = {
   label: 'Dashboard',
@@ -11,16 +12,6 @@ export const dashboardRoutes = {
       active: true,
       icon: 'chart-pie',
       children: [
-        ...(_l === 'super'
-          ? [
-              {
-                name: 'Général',
-                to: `/dashboard/superadmin/default`,
-                exact: true,
-                active: true
-              }
-            ]
-          : []),
         {
           name: 'CONSULTATION',
           to: `/dashboard/default`,
@@ -37,23 +28,18 @@ export const SuperAdminDashRoutes = {
   labelDisable: true,
   children: [
     {
-      name: 'Super Administrateur',
+      name: 'Administrateur',
       active: true,
       icon: 'star',
       children: [
         {
+          name: 'FORMULAIRE',
+          to: '/dashboard/admin/formulaire',
+          active: true
+        },
+        {
           name: 'Utilisateurs',
-          to: '/dashboard/sadmin/users/candidate-list',
-          active: true
-        },
-        {
-          name: 'Applications',
-          to: '/dashboard/sadmin/applications/application-list',
-          active: true
-        },
-        {
-          name: 'Demandes',
-          to: '/dashboard/sadmin/demands/application-list',
+          to: '/dashboard/admin/users',
           active: true
         }
       ]
@@ -62,7 +48,7 @@ export const SuperAdminDashRoutes = {
 };
 
 const fiexp = [dashboardRoutes];
-if (_l === 'super') {
+if (_l === 'admin') {
   fiexp.push(SuperAdminDashRoutes);
 }
 export default fiexp;

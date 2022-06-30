@@ -104,7 +104,7 @@ module.exports = {
       if (month < 10) {
         month = "0" + month;
       }
-      let strdate = year + "-" + month + "-" + dt;
+      let strdate = dt + "/" + month + "/" + year;
       strdate += whithHour
         ? " , " + last_modified.getHours() + ":" + last_modified.getMinutes()
         : "";

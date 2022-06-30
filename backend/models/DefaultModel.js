@@ -1,3 +1,5 @@
+const { date_to_string } = require("../helpers/utils");
+
 module.exports = {
   ContactMessage: {
     username: "",
@@ -9,41 +11,27 @@ module.exports = {
     user_email: "",
     user_pass: "",
     identity: "",
-    visibility: "review",
+    visibility: "active",
     user_type: "",
     user_status: 1,
     user_registered: new Date(Date.now()).toISOString(),
     last_connected: new Date(Date.now()).toISOString(),
   },
-  Application: {
-    ID: 1,
-    userId: 1,
-    targetID: 1,
-    title: "",
-    description: "",
-    offer: {},
-    targetDelete: false,
-    file: "",
-    response: {
-      decision: "",
-      date: null,
-    },
-    post_date: new Date(Date.now()).toISOString(),
+  Consultation: {
+    code: 1,
+    cons_label: "",
+    cons_description: "",
+    cons_management: "",
+    cons_support: "",
+    cons_date: date_to_string(new Date(Date.now()).toISOString()),
   },
-  Demand: {
-    ID: 1,
-    userId: 1,
-    targetID: 1,
-    offerID: 1,
-    offer: {},
-    targetDelete: false,
-    offer_title: "",
-    message: "",
-    companyname: "",
-    response: {
-      decision: "",
-      date: null,
-    },
-    post_date: new Date(Date.now()).toISOString(),
+  Consultation_raw: {
+    Code: 1,
+    Label: "",
+    Support: "",
+    Management: "",
+    Date: "",
+    Date: "",
+    Description: "",
   },
 };

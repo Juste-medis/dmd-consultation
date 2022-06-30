@@ -27,6 +27,14 @@ exports.getSuperAdminOption = (req, res, next) => {
     })
     .catch((err) => next(err));
 };
+exports.populateConsultation = (req, res, next) => {
+  dashboardservice
+    .populateConsultation(req)
+    .then((data) => {
+      reponse_me(res, data);
+    })
+    .catch((err) => next(err));
+};
 exports.AGetStatistics = (req, res, next) => {
   dashboardservice
     .AGetStatistics(req)

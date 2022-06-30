@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Dropdown, Form } from 'react-bootstrap';
-import CardDropdown from 'components/common/CardDropdown';
-import { Link } from 'react-router-dom';
-import Flex from 'components/common/Flex';
-import Avatar from 'components/common/Avatar';
+import { Card, Form } from 'react-bootstrap';
+
 import AdvanceTableWrapper from 'components/common/advance-table/AdvanceTableWrapper';
 import CustomersTableHeader from './TablesHeaderrs/UsersTableHeader';
 import AdvanceTablePagination from 'components/common/advance-table/AdvanceTablePagination';
 import AdvanceTable from 'components/common/advance-table/AdvanceTable';
-import {
-  SAGetMyOptions,
-  UpdateUserLevel,
-  UpdateUserStatus
-} from 'API/AFetcher';
+import { GetOptions, UpdateUserLevel, UpdateUserStatus } from 'API/AFetcher';
 import { toast } from 'react-toastify';
 import { UriEncoder } from 'helpers/utils';
 import Globals from 'Ressources/Globals';
@@ -23,6 +16,22 @@ dayjs.locale('fr');
 
 const columns = [
   {
+    accessor: 'ID',
+    Header: 'ID',
+    headerProps: { className: 'pe-1' },
+    cellProps: {
+      className: 'py-2'
+    },
+    Cell: rowData => {
+      const { ID } = rowData.row.original;
+      return (
+        <div className="flex-1">
+          <h5 className="mb-0 fs--1">{ID}</h5>
+        </div>
+      );
+    }
+  },
+  {
     accessor: 'name',
     Header: 'Nom',
     headerProps: { className: 'pe-1' },
@@ -30,20 +39,11 @@ const columns = [
       className: 'py-2'
     },
     Cell: rowData => {
-      const { name, avatar, ID } = rowData.row.original;
+      const { name } = rowData.row.original;
       return (
-        <Link to={`/candidate/user-details/${ID}-${name}`}>
-          <Flex alignItems="center">
-            {avatar.img ? (
-              <Avatar src={avatar.img} size="xl" className="me-2" />
-            ) : (
-              <Avatar size="xl" name={avatar.name} className="me-2" />
-            )}
-            <div className="flex-1">
-              <h5 className="mb-0 fs--1">{name}</h5>
-            </div>
-          </Flex>
-        </Link>
+        <div className="flex-1">
+          <h5 className="mb-0 fs--1">{name}</h5>
+        </div>
       );
     }
   },
@@ -55,27 +55,42 @@ const columns = [
       return <a href={`mailto:${email}`}>{email}</a>;
     }
   },
+
   {
-    accessor: 'user_type',
-    Header: 'Type',
+    accessor: 'isConnected',
+    Header: 'Activité',
     Cell: rowData => {
-      const { user_type } = rowData.row.original;
-      return <span className="text-black fw-bold">{user_type}</span>;
+      const { isConnected } = rowData.row.original;
+      let connectedText = '',
+        connectedColor = '';
+
+      if (isConnected) {
+        connectedText = 'En ligne';
+        connectedColor = 'success';
+      } else {
+        connectedText = 'Hors ligne';
+        connectedColor = 'muted';
+      }
+      return (
+        <span className={`text-${connectedColor} fw-bold`}>
+          {connectedText}
+        </span>
+      );
     }
   },
   {
     accessor: 'visibility',
-    Header: 'Niveau',
+    Header: 'Status',
     headerProps: { style: { minWidth: '200px' }, className: 'ps-5' },
     cellProps: { className: 'ps-5' },
     Cell: rowData => {
       const { ID } = rowData.row.original;
-      const [user_status, setvisibility] = React.useState(
-        rowData.row.original.user_status
+      const [visibility, setvisibility] = React.useState(
+        rowData.row.original.visibility
       );
 
       function go_update(values) {
-        UpdateUserLevel(UriEncoder(values))
+        UpdateUserStatus(UriEncoder(values))
           .then(res => {
             res = res.data;
             if (res.message) {
@@ -95,6 +110,60 @@ const columns = [
           onChange={e => {
             let val = e.currentTarget.value;
             setTimeout(() => {
+              go_update({ visibility: val, ID });
+            }, 400);
+          }}
+          className={`fw-bold ${
+            visibility === 'active'
+              ? 'text-success'
+              : visibility === 'blocked'
+              ? 'text-danger'
+              : 'text-secondary'
+          }`}
+          size="sm"
+          aria-label="Bulk actions"
+          defaultValue={visibility}
+        >
+          <option value="active" className="text-success fw-bold">
+            Active
+          </option>
+          <option value="blocked" className="text-danger fw-bold">
+            Désactivé
+          </option>
+        </Form.Select>
+      );
+    }
+  },
+  {
+    accessor: 'user_status',
+    Header: 'Niveau',
+    headerProps: { style: { minWidth: '200px' }, className: 'ps-5' },
+    cellProps: { className: 'ps-5' },
+    Cell: rowData => {
+      const { ID } = rowData.row.original;
+      const [user_status, setStatus] = React.useState(
+        rowData.row.original.user_status
+      );
+      function go_update(values) {
+        UpdateUserLevel(UriEncoder(values))
+          .then(res => {
+            res = res.data;
+            if (res.message) {
+              toast.error(`${res.message}`);
+            } else {
+              toast.success(`${Globals.STRINGS.sucess_Update}`);
+              setStatus(values.visibility);
+            }
+          })
+          .catch(err => {
+            toast.error(`${err}`);
+          });
+      }
+      return (
+        <Form.Select
+          onChange={e => {
+            let val = e.currentTarget.value;
+            setTimeout(() => {
               go_update({ user_status: val, ID });
             }, 400);
           }}
@@ -107,9 +176,6 @@ const columns = [
           aria-label="Bulk actions"
           defaultValue={user_status}
         >
-          <option value={5} className="fw-bold text-secondary">
-            Super Administrateur
-          </option>
           <option value={4} className="fw-bold text-secondary">
             Administrateur
           </option>
@@ -129,24 +195,6 @@ const columns = [
         <span className=" fw-bold">{dayjs(joined).format('DD MMM YYYY')}</span>
       );
     }
-  },
-  {
-    accessor: 'none',
-    Header: '',
-    disableSortBy: true,
-    cellProps: {
-      className: 'text-end'
-    },
-    Cell: () => {
-      return (
-        <CardDropdown iconClassName="fs--1">
-          <div className="py-2">
-            <Dropdown.Item href="#!">Modifier</Dropdown.Item>
-            <Dropdown.Item href="#!">Suprimer</Dropdown.Item>
-          </div>
-        </CardDropdown>
-      );
-    }
   }
 ];
 const Users = () => {
@@ -157,7 +205,7 @@ const Users = () => {
   }, []);
 
   function load_init() {
-    SAGetMyOptions('users').then(res => {
+    GetOptions('users').then(res => {
       if (res) {
         res = res.data;
         if (res.message || res.error) {

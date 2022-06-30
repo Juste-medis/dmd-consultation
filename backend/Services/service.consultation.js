@@ -1,59 +1,29 @@
-var formidable = require("formidable");
 const HelperFile = require("../helpers/fileUtils");
 const Helper = require("../helpers/utils");
 const Global = require("../Ressources/fr/Globals");
 const Scheme = require("../models/schemas");
-const {
-  Quizz,
-  Lesson,
-  Offer,
-  Application,
-  Demand,
-} = require("../models/DefaultModel");
-const Joi = require("joi");
+const { Offer } = require("../models/DefaultModel");
 const assert = require("assert");
 const incrementor = require("../helpers/id_incrementor");
-const Globals = require("../Ressources/fr/Globals");
 const { Numberrise } = require("../helpers/utils");
-const {
-  isAdmin,
-  hasPostOffer,
-  getOfferStatus,
-  getUserStatus,
-} = require("../helpers/dbUtils");
+const { isAdmin, hasPostOffer } = require("../helpers/dbUtils");
 const { updateOfferStatus } = require("../helpers/Updater");
+const reader = require("xlsx");
 
-async function getStuff(req) {
-  await updateOfferStatus();
-  let { id } = req.params;
-  let { level, userId } = req.query;
-  userId = Number(userId);
-  id = Number(id);
-  if (level === "company") {
-    assert(await hasPostOffer(userId, id), "Not admin to get course_si1");
-  } else if (level === "casper") {
-    assert(await isAdmin(userId), "Not admin to get course_si1");
+async function getLines(req) {
+  const file = reader.readFile("files/data.xls");
+  let data = [];
+  const sheets = file.SheetNames;
+  for (let i = 0; i < sheets.length; i++) {
+    const temp = reader.utils.sheet_to_json(file.Sheets[file.SheetNames[i]], {
+      dateNF: "dd/mm/YYYY",
+      raw: false,
+    });
+    temp.forEach((res) => {
+      data.push(res);
+    });
   }
-  const offer = await global.dbo
-    .collection("dmd_offers")
-    .findOne({ ID: id }, { projection: { _id: 0 } });
-  if (offer) {
-    let poar = ["review", "rejected", "blocked"];
-    if ((!level || level === "candidate") && poar.includes(offer.meta_status)) {
-      throw "offre non disponible ou en cour d'examen! revenez voir ultérieurement .";
-    }
-    const { companyname } = await global.dbo
-      .collection("dmd_companies")
-      .findOne({ ID: offer.companyID }, { projection: { companyname: 1 } });
-
-    const { avatar } = await global.dbo
-      .collection("dmd_users")
-      .findOne({ ID: offer.companyID }, { projection: { avatar: 1 } });
-
-    offer.companyname = companyname;
-    offer.company_avatar = avatar;
-    return offer;
-  }
+  return { lines: data.length };
 }
 async function getAllStuff(req) {
   await updateOfferStatus();
@@ -168,10 +138,9 @@ async function addConsultation(req) {
     throw formfields;
   }
 }
-//------------------------quizzes------------------------------------
-//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 module.exports = {
   getAllStuff,
   addConsultation,
-  getStuff,
+  getLines,
 };

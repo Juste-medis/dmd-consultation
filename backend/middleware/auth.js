@@ -1,7 +1,6 @@
 const config = require("../config/config.json");
 const jwt = require("jsonwebtoken");
 const sessionHandler = require("../helpers/sessionHandler");
-const Global = require("../Ressources/fr/Globals");
 
 module.exports = async (req, res, next) => {
   var nb = Number(req.params.nb);

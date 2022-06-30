@@ -1,6 +1,6 @@
 {
   "connectionString": "mongodb://127.0.0.1:27017",
-  "secret": "JESUISASEDAMIACALAVI",
-  "afile": "SEDAMIAFFILLIATIONLODODO",
-  "reinitpass": "SEDAMIREINITIALOSOSO"
+  "secret": "JESUISADMDACALAVI",
+  "afile": "DMDAFFILLIATIONLODODO",
+  "reinitpass": "DMDREINITIALOSOSO"
 }

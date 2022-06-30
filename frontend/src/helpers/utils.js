@@ -74,6 +74,19 @@ export const numberFormatter = (number, fixed = 2) => {
     : Math.abs(Number(number)).toFixed(fixed);
 };
 
+export const msToTime = duration => {
+  duration = duration < 0 ? 0 : duration;
+  let seconds = Math.floor((duration / 1000) % 60),
+    minutes = Math.floor((duration / (1000 * 60)) % 60),
+    hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+  hours = hours > 10 ? (hours < 10 ? '0' + hours : hours) + ' h :' : '';
+  minutes = (minutes < 10 ? '0' + minutes : minutes) + 'm ';
+  seconds = (seconds < 10 ? '0' + seconds : seconds) + 's ';
+
+  return hours + minutes + ': ' + seconds;
+};
+
 //===============================
 // Colors
 //===============================

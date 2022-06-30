@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import IconButton from 'components/common/IconButton';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Col, Form, Row, Button } from 'react-bootstrap';
@@ -24,9 +23,6 @@ const CustomersTableHeader = ({ selectedRowIds, go_update }) => {
             >
               <option value="active">Valider</option>
               <option value="blocked">Bloquer</option>
-              <option value="review">Mettre sous analyse</option>
-              <option value="delete">Supprimer</option>
-              <option value="archive">Archiver</option>
             </Form.Select>
             <Button
               type="button"
@@ -44,33 +40,7 @@ const CustomersTableHeader = ({ selectedRowIds, go_update }) => {
             </Button>
           </div>
         ) : (
-          <div id="orders-actions">
-            <IconButton
-              variant="falcon-default"
-              size="sm"
-              icon="plus"
-              transform="shrink-3"
-            >
-              <span className="d-none d-sm-inline-block ms-1">Nouveau</span>
-            </IconButton>
-            <IconButton
-              variant="falcon-default"
-              size="sm"
-              icon="filter"
-              transform="shrink-3"
-              className="mx-2"
-            >
-              <span className="d-none d-sm-inline-block ms-1">Filtrer</span>
-            </IconButton>
-            <IconButton
-              variant="falcon-default"
-              size="sm"
-              icon="external-link-alt"
-              transform="shrink-3"
-            >
-              <span className="d-none d-sm-inline-block ms-1">Exporter</span>
-            </IconButton>
-          </div>
+          <div id="orders-actions"></div>
         )}
       </Col>
     </Row>

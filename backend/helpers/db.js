@@ -18,8 +18,8 @@ const username = "djondo",
 function incrementor(req, res, next) {
   MongoClient.connect(url, connecOption, function (err, db) {
     assert.strictEqual(null, err);
-    global.dbo = db.db("runex");
-    global.dblog = db.db("nexlogs");
+    global.dbo = db.db("dmd_base");
+    global.dblog = db.db("dmd_logs");
     attachlogger();
     next();
   });

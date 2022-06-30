@@ -25,7 +25,7 @@ const LogoutContent = ({ titleTag: TitleTag, user }) => {
         color="primary"
         size="sm"
         className="mt-3"
-        to={`/authentication/login`}
+        to={`/authentication/user/login`}
       >
         <FontAwesomeIcon
           icon="chevron-left"

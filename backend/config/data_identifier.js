@@ -10,8 +10,8 @@ let kkiapay1 = {
     sandbox: true,
   },
   mailauth = {
-    user: "",
-    pass: "",
+    user: "medisadido@gmail.com",
+    pass: "fd",
   };
 module.exports = {
   kkiapay: global.localmachine ? kkiapay2 : kkiapay1,

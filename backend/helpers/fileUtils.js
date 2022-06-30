@@ -3,6 +3,20 @@ const { extname } = require("path");
 const Global = require("../Ressources/fr/Globals");
 
 module.exports = {
+  readFromDisc: async (fileName) => {
+    return new Promise((resolve, reject) => {
+      const startTime = Date.now();
+      fs.readFile(fileName, (err, buf) => {
+        setTimeout(() => {
+          const totalReadingTime = Date.now() - startTime;
+          if (err) {
+            reject(err);
+          }
+          resolve({ time: totalReadingTime });
+        }, 2000);
+      });
+    });
+  },
   validateFile: (file, type, size) => {
     if (type(file.name)) {
       if (file.size <= size) {

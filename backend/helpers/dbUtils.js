@@ -1,71 +1,5 @@
 var assert = require("assert");
-exports.CompanySigned = async function (id) {
-  let user = await global.dbo
-    .collection("dmd_users")
-    .findOne({ ID: id }, { projection: { user_type: 1 } });
-  return user != null && user.user_type === "valide";
-};
-exports.FormatorOptions = async function (userid, courseid) {
-  let autoption;
-  if (userid) {
-    autoption = await global.dbo
-      .collection("dmd_users_minssi")
-      .findOne({ ID: userid }, { projection: { _id: 0, userOptions: 1 } });
-    autoption = await global.dbo
-      .collection("dmd_users_minssi_option")
-      .findOne({ label: autoption.userOptions }, { projection: { _id: 0 } });
-  } else {
-    let author = await global.dbo
-      .collection("se_courses")
-      .findOne({ ID: courseid }, { projection: { _id: 0, c_author: 1 } });
-    autoption = await global.dbo
-      .collection("dmd_users_minssi")
-      .findOne(
-        { ID: author.c_author },
-        { projection: { _id: 0, userOptions: 1 } }
-      );
-    autoption = await global.dbo
-      .collection("dmd_users_minssi_option")
-      .findOne({ label: autoption.userOptions }, { projection: { _id: 0 } });
-  }
-  return autoption;
-};
-/**
- * verifie si l'utisateur a payé le cour en recherchant son id dans l'array Courses de userMeta
- * @param {*} userId id utilisateur
- * @param {*} courseId id du cour
- * @returns
- */
 
-exports.hasPaid = async function (userId, courseId) {
-  var userMeta = await global.dbo
-    .collection("dmd_users_meta")
-    .findOne({ ID: userId }, { projection: { _id: 0, courses: 1 } });
-  //  assert(userMeta, "user not found");
-  if (userMeta) {
-    let paid = userMeta.courses.find((course) => {
-      return Number(course.id) == courseId;
-    });
-    return paid;
-  }
-};
-/**
- * obtenir le status d'un cour
- * @param {*} courseId id du cour
- * @returns
- */
-exports.getOfferStatus = async function (courseId) {
-  var courseMeta = await global.dbo
-    .collection("dmd_offers")
-    .findOne(
-      { ID: courseId },
-      { projection: { _id: 0, meta_status: 1, offer_status: 1 } }
-    );
-  if (courseMeta) {
-    let { meta_status, offer_status } = courseMeta;
-    return { meta_status, offer_status };
-  }
-};
 /**
  * obtenir un paramèrez du système
  * @param {*} key tag de l'option
@@ -73,24 +7,11 @@ exports.getOfferStatus = async function (courseId) {
  */
 exports.getSysParam = async function (key) {
   let { value } = await global.dbo
-    .collection("se_params")
+    .collection("dmd_params")
     .findOne({ name: key }, { projection: { value: 1 } });
   if (value) {
     return value;
   }
-};
-/**
- * verifie si l'utisateur est un formateur et a payé le cour en recherchant son id dans l'array
- * usersminssi sinon
- * @param {*} userId id formateur
- * @param {*} courseId id du cour
- * @returns
- */
-exports.hasPostOffer = async function (userId, offerId) {
-  let offer = await global.dbo
-    .collection("dmd_offers")
-    .findOne({ ID: offerId }, { projection: { _id: 0, companyID: 1 } });
-  return offer.companyID === userId;
 };
 /**
  * verifie si l'utisateur est un administrateur

@@ -111,7 +111,7 @@ const Globals = {
     constrain_cover_course: `fichier type png,jpg de format 400x500 px ( <= 5Mo)`,
     constrain_cover_profil: `fichier type png,jpg de format 604x604 px ( <= 5Mo)`,
     sucess_Update: `Mise à jour réuissi`,
-    sucess_suppress: `Suppression éfectuée`,
+    sucess_add: `Ajout éfectué aux consultations`,
     sucess_AddOffer: `Votre nouvelle offre a bien été ajoutée`,
     sucess_ModifyOffer: `Votre offre a bien été modifiée`,
     sucess_Notification_sended: `Notification Partagée`,
