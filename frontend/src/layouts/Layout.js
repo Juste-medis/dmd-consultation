@@ -2,8 +2,6 @@
 import React, { useEffect } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import is from 'is_js';
-import SettingsToggle from 'components/settings-panel/SettingsToggle';
-import SettingsPanel from 'components/settings-panel/SettingsPanel';
 import AuthSimpleLayout from './AuthSimpleLayout';
 import ErrorLayout from './ErrorLayout';
 import { ToastContainer } from 'react-toastify';
@@ -38,7 +36,7 @@ const Layout = () => {
         <Route path="/errors" component={ErrorLayout} />
         <Route path="/authentication/user" component={AuthSimpleLayout} />
         <Route path="/authentication/logout" component={Logout} />
-        <PrivateRoute
+        <PrivateRouteAdmin
           local="___lo_rery_yap_adi"
           path="/dashboard/admin"
           component={<MainLayout />}
@@ -52,9 +50,6 @@ const Layout = () => {
         <Route component={LandingLayout} />
         <Redirect to="/errors/404" />
       </Switch>
-      <SettingsToggle />
-      <SettingsPanel />
-
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -73,7 +68,6 @@ const Layout = () => {
 
 export function PrivateRoute({ component, local, ...rest }) {
   const isAuthenticated = cookies.get(local);
-
   return (
     <Route
       {...rest}
@@ -94,7 +88,6 @@ export function PrivateRoute({ component, local, ...rest }) {
 }
 export function PrivateRouteAdmin({ component, local, ...rest }) {
   const isAuthenticated = cookies.get(local);
-
   return (
     <Route
       {...rest}
@@ -104,7 +97,7 @@ export function PrivateRouteAdmin({ component, local, ...rest }) {
         ) : (
           <Redirect
             to={{
-              pathname: '/authentication/user/login',
+              pathname: '/authentication/user/lock-screen',
               state: { from: location }
             }}
           />

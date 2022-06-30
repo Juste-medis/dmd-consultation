@@ -73,6 +73,13 @@ async function authenticate(route, res) {
   if (user) {
     const valid = bcrypt.compareSync(user_pass, user.user_pass);
     if (valid) {
+      const isActivve = await require("../helpers/dbUtils").getUserStatus(
+        user.ID
+      );
+      if (isActivve === "blocked") {
+        throw "Utilisateur Bloqué";
+      }
+
       let newvalues = {
         last_connected: new Date(Date.now()).toISOString(),
       };

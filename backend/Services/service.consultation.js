@@ -3,11 +3,8 @@ const Helper = require("../helpers/utils");
 const Global = require("../Ressources/fr/Globals");
 const Scheme = require("../models/schemas");
 const { Offer } = require("../models/DefaultModel");
-const assert = require("assert");
 const incrementor = require("../helpers/id_incrementor");
 const { Numberrise } = require("../helpers/utils");
-const { isAdmin, hasPostOffer } = require("../helpers/dbUtils");
-const { updateOfferStatus } = require("../helpers/Updater");
 const reader = require("xlsx");
 
 async function getLines(req) {
@@ -25,48 +22,6 @@ async function getLines(req) {
   }
   return { lines: data.length };
 }
-async function getAllStuff(req) {
-  await updateOfferStatus();
-  let { level, query } = req.query,
-    abpro = {
-      meta_status: {
-        $nin: ["review", "rejected", "blocked"],
-      },
-    },
-    sopro = {};
-
-  if (query) {
-    query = JSON.parse(query);
-    var { find, sort } = query;
-    for (let fi = 0; fi < find.length; fi++) {
-      let data = { label: find[fi].key, value: find[fi].value };
-      //<><><><><><><><><><><><><>securitaire<><><><><><><><><><><><><><><>
-      await Scheme.Querries.Public.offers.validate(data);
-      data = Numberrise(data);
-      //<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-      if (data.value?.length > 0 || typeof data.value === "object") {
-        abpro[data.label] = data.value;
-      }
-    }
-    for (let fi = 0; fi < sort.length; fi++) {
-      sopro[sort[fi].key] = sort[fi].value;
-    }
-  }
-  const offers = await global.dbo
-    .collection("dmd_offers")
-    .find(abpro, { projection: { _id: 0, meta_status: 0 } })
-    .sort(Object.keys(sopro).length === 0 ? { posted_date: -1 } : sopro)
-    .toArray();
-  for (let i = 0; i < offers.length; i++) {
-    const { companyname } = await global.dbo
-      .collection("dmd_companies")
-      .findOne({ ID: offers[i].companyID }, { projection: { companyname: 1 } });
-    offers[i].companyname = companyname;
-  }
-
-  return offers;
-}
-
 //--------------------------------offer------------------------------------
 async function addConsultation(req) {
   var formidable = require("formidable");
@@ -140,7 +95,6 @@ async function addConsultation(req) {
 }
 
 module.exports = {
-  getAllStuff,
   addConsultation,
   getLines,
 };

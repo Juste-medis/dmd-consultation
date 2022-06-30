@@ -10,12 +10,13 @@ module.exports = async (req, res, next) => {
       next();
     } else {
       res.status(200).json({
-        message: "Unauthorized by Admin",
+        message:
+          "Vous n'avez pas l'autorisation pour effectuer cette oppération ",
       });
     }
   } catch (error) {
     res.status(200).json({
-      message: "Unauthorized by Admin",
+      message: "Vous n'avez pas l'autorisation pour effectuer cette oppération",
     });
   }
 };

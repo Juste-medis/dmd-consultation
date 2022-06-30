@@ -35,7 +35,5 @@ const SCHEMAS = {
     user_pass: yup.string().required(Global.STRINGS.recquired_pass),
   }),
 };
-function standarError(e) {
-  throw Global.STRINGS.Ocurred_error + e;
-}
+
 module.exports = SCHEMAS;

@@ -1,12 +1,6 @@
 const { date_to_string } = require("../helpers/utils");
 
 module.exports = {
-  ContactMessage: {
-    username: "",
-    objet: "",
-    message: "",
-    user_email: "",
-  },
   User: {
     user_email: "",
     user_pass: "",

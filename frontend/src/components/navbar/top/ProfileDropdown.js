@@ -44,31 +44,6 @@ const ProfileDropdown = ({ userProfil }) => {
 
       <Dropdown.Menu className="dropdown-menu-card  dropdown-menu-end">
         <div className="bg-white rounded-2 py-2 dark__bg-1000">
-          <Dropdown.Item as={Link} to="/user/profil">
-            <IoPerson className="me-1" size={20} />
-            <span> Profil &amp; compte </span>
-          </Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item
-            as={Link}
-            to={`${
-              _l === 'super'
-                ? '/dashboard/superadmin/default'
-                : _u === 'candidate'
-                ? '/dashboard/employee/default'
-                : _u === 'company'
-                ? '/dashboard/employer/default'
-                : ''
-            }`}
-          >
-            <IoPieChart className="me-1" size={20} />
-            Tableau de bord
-          </Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item as={Link} to="/user/settings">
-            <IoSettings className="me-1" size={20} />
-            <span> Paramètres</span>
-          </Dropdown.Item>
           <Dropdown.Item as={Link} to="/authentication/logout">
             <IoLogOut className="text-danger me-1" size={20} />
             <span>Déconnexion </span>

@@ -20,7 +20,6 @@ app.options("*", cors());
 
 app.use(express.static(path.join(__dirname, "build")));
 
-//app.use("/djondoapi/royal/test", require("./routes/test/route_test"));
 app.use("/djondoapi/royal/dashboard", require("./routes/dashboard_route"));
 app.use(
   "/djondoapi/royal/consulations",
@@ -43,5 +42,5 @@ module.exports = app;
 /*
 app.use((req, res, next) => {
   cookies.set("testtoken", { expires:²² Date.now() });
-});
+}); 
 */

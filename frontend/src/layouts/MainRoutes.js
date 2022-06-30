@@ -9,7 +9,6 @@ const MainRoutes = () => (
   <Switch>
     {/*Dashboard*/}
     <Route path="/dashboard/default" exact component={ASDashboard} />
-    <Route path="/dashboard/default" exact component={ASDashboard} />
 
     <Route path={`/dashboard/admin/users`} exact component={Users} />
     <Route
